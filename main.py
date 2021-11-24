@@ -39,13 +39,13 @@ def main (argc: int, argv: list[str]) -> int:
   elif (instr == instrType.HELP):
     help (args)
   elif (instr == instrType.CODING1):
-    coding1 (args)
+    print (coding1 (args))
   elif (instr == instrType.CODING2):
-    coding2 (args)
+    print (coding2 (args))
   elif (instr == instrType.DECODING1):
-    decoding1 (args)
+    print (decoding1 (args))
   elif (instr == instrType.DECODING2):
-    decoding2 (args)
+    print (decoding2 (args))
   return 0
 
 if __name__ == "__main__":
