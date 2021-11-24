@@ -12,12 +12,14 @@ def help (argv: list[str]) -> NoReturn:
   # TODO
   return
 
+# ⟪x, y⟫ = 2^x * (2y + 1)
 def coding1 (argv: list[str]) -> int:
   # TODO: Assume there are two arguments
   x: int = int (argv[0])
   y: int = int (argv[1])
   return 2 ** x * (2 * y + 1)
 
+# <x, y> = 2^x * (2y + 1) - 1
 def coding2 (argv: list[str]) -> int:
   # TODO: Assume there are two arguments
   return coding1 (argv) - 1
