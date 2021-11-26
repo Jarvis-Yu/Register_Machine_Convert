@@ -18,7 +18,6 @@ class instrType (Enum):
 
   @staticmethod
   def getType (token: str) -> instrType:
-    print (token)
     for instr in list (instrType):
       if instr.isThis (token):
         return instr
@@ -52,6 +51,7 @@ class instrType (Enum):
 def main (argc: int, argv: List[str]) -> int:
   instr: instrType; args: List[str]
   instr, args = instrType.getTypeFromArgs (argv[1:])
+  return instr.runInstr (instr, args)
   if   (instr == instrType.MISSING):
     missing ()
   elif (instr == instrType.UNKNOWN):
