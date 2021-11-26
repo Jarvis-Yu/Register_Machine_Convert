@@ -5,7 +5,7 @@ def missing () -> NoReturn:
   return
 
 def unknown () -> NoReturn:
-  # TODO
+  print ("[!] Unknown Instruction")
   return
 
 def help (argv: List[str]) -> NoReturn:
