@@ -1,7 +1,7 @@
 from typing import NoReturn, Tuple, List
 
 def missing () -> NoReturn:
-  # TODO
+  print ("[!] Argument Missing")
   return
 
 def unknown () -> NoReturn:

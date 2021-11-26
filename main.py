@@ -52,21 +52,6 @@ def main (argc: int, argv: List[str]) -> int:
   instr: instrType; args: List[str]
   instr, args = instrType.getTypeFromArgs (argv[1:])
   return instr.runInstr (instr, args)
-  if   (instr == instrType.MISSING):
-    missing ()
-  elif (instr == instrType.UNKNOWN):
-    unknown ()
-  elif (instr == instrType.HELP):
-    help (args)
-  elif (instr == instrType.CODING1):
-    print (coding1 (args))
-  elif (instr == instrType.CODING2):
-    print (coding2 (args))
-  elif (instr == instrType.DECODING1):
-    print (decoding1 (args))
-  elif (instr == instrType.DECODING2):
-    print (decoding2 (args))
-  return 0
 
 if __name__ == "__main__":
   sys.exit (main (len (sys.argv), sys.argv))
