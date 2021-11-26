@@ -1,37 +1,57 @@
+from __future__ import annotations
 import sys
-from enum import Enum
-from strHelp import isOneOf
+from enum import Enum, auto
 from instrHandler import *
+from typing import List
 
 class instrType (Enum):
-  MISSING   = 0
-  UNKNOWN   = 1
-  HELP      = 9
-  CODING1   = 10
-  CODING2   = 11
-  DECODING1 = 12
-  DECODING2 = 13
+  MISSING   = (auto (), [])
+  UNKNOWN   = (auto (), [])
+  HELP      = (auto (), ["-h", "--help"])
+  CODING1   = (auto (), ["-c1", "--coding1"])
+  CODING2   = (auto (), ["-c2", "--coding2"])
+  DECODING1 = (auto (), ["-d1", "--decoding1"])
+  DECODING2 = (auto (), ["-d2", "--decoding2"])
 
-def getInstrType (argc: int, argv: list[str]) -> instrType:
-  if (argc < 2):
-    return instrType.MISSING
-  instr: str = argv[1]
-  if   (isOneOf (instr, ["-h", "--help"])):
-    return instrType.HELP
-  elif (isOneOf (instr, ["-c1", "--coding1"])):
-    return instrType.CODING1
-  elif (isOneOf (instr, ["-c2", "--coding2"])):
-    return instrType.CODING2
-  elif (isOneOf (instr, ["-d1", "--decoding1"])):
-    return instrType.DECODING1
-  elif (isOneOf (instr, ["-d2", "--decoding2"])):
-    return instrType.DECODING2
-  else:
+  def isThis (self, token: str) -> bool:
+    return token in self.value[1]
+
+  @staticmethod
+  def getType (token: str) -> instrType:
+    print (token)
+    for instr in list (instrType):
+      if instr.isThis (token):
+        return instr
     return instrType.UNKNOWN
 
-def main (argc: int, argv: list[str]) -> int:
-  instr: instrType = getInstrType (argc, argv)
-  args: list[str] = argv[2:]
+  @staticmethod
+  def getTypeFromArgs(argv: List[str]) -> Tuple[instrType, List[str]]:
+    if (not argv):
+      return (instrType.MISSING, argv[1:])
+    instr: str = argv[0]
+    return (instrType.getType (instr), argv[1:])
+
+  @staticmethod
+  def runInstr(instr: instrType, args: List[str]) -> int:
+    if   (instr == instrType.MISSING):
+      missing ()
+    elif (instr == instrType.UNKNOWN):
+      unknown ()
+    elif (instr == instrType.HELP):
+      help (args)
+    elif (instr == instrType.CODING1):
+      print (coding1 (args))
+    elif (instr == instrType.CODING2):
+      print (coding2 (args))
+    elif (instr == instrType.DECODING1):
+      print (decoding1 (args))
+    elif (instr == instrType.DECODING2):
+      print (decoding2 (args))
+    return 0
+
+def main (argc: int, argv: List[str]) -> int:
+  instr: instrType; args: List[str]
+  instr, args = instrType.getTypeFromArgs (argv[1:])
   if   (instr == instrType.MISSING):
     missing ()
   elif (instr == instrType.UNKNOWN):
