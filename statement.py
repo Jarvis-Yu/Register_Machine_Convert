@@ -39,3 +39,10 @@ def encodeProgram (statements: List[str]) -> int:
 
 def decodeProgram (num: int) -> List[str]:
   return list (map (decodeStatement, decodeList1 (num)))
+
+def getProFromFile (fileName: str) -> List[str]:
+  lines: List[str] = []
+  f = open (fileName, "r")
+  for line in f:
+    lines.append (line[:-1])
+  return lines

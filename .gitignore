@@ -1,2 +1,4 @@
 *.swp
+input.txt
+output.txt
 __pycache__/*
