@@ -34,12 +34,12 @@ def __encodeListWith (nums: List[int], encode: function) -> int:
   return ret
 
 def decodeList1 (num: int) -> List[int]:
-  return decodeListWith (num, decode1)
+  return __decodeListWith (num, decode1)
 
 def decodeList2 (num: int) -> List[int]:
-  return decodeListWith (num, decode2)
+  return __decodeListWith (num, decode2)
 
-def decodeListWith (num: int, decode: function) -> List[int]:
+def __decodeListWith (num: int, decode: function) -> List[int]:
   ret: List[int] = []
   if (num == 0):
     return ret

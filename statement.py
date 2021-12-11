@@ -33,3 +33,9 @@ def decodeStatement (num: int) -> str:
     i //= 2
     j, k = decode2 (j)
     return "R-%d -> L%d L%d"%(i, j, k)
+
+def encodeProgram (statements: List[str]) -> int:
+  return encodeList1 (list (map (encodeStatement, statements)))
+
+def decodeProgram (num: int) -> List[str]:
+  return list (map (decodeStatement, decodeList1 (num)))
